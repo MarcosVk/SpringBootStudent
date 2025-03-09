@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table(name="student")
@@ -21,37 +22,43 @@ public class Student{
 )
 private Long id;
 private String name;
-private int age;
 private LocalDate date;
 private String email;
+@Transient
+private Integer age;
 
 
 public Student(){
 }
-public Student(Long id,String name,int age,LocalDate date,String email){
+public Student(Long id,String name,LocalDate date,String email){
 	this.id=id;
 	this.name=name;
-	this.age=age;
 	this.date=date;
 	this.email=email;
 }
-public Student(String name,int age,LocalDate date,String email){
+public Student(String name,LocalDate date,String email){
 this.name=name;
-this.age=age;
 this.date=date;
 this.email=email;
 }
+public Long getId() {
+	return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 public String getName(){
 return name;
 }
 public void setName(String name){
 this.name=name;
 }
-public int getAge(){
-return age;
+public Integer getAge() {
+	return Period.between(this.date, LocalDate.now()).getYears();
 }
-public void setAge(int age){
-this.age=age;
+public void setAge(Integer age){
+	this.age=age;
 }
 public LocalDate getDate(){
 return date;

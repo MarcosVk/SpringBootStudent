@@ -28,7 +28,7 @@ public void addStudent(Student student){
 	studentRepository.save(student);
 }
 public void removeStudent(Long studentId){
-		Boolean exists=studentRepository.existsById(studentId);
+		boolean exists=studentRepository.existsById(studentId);
 		if(!exists){
 			throw new IllegalArgumentException("Student does not exist");
 		}

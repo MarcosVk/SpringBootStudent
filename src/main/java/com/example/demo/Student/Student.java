@@ -16,24 +16,6 @@ import java.time.Period;
 public class Student{
 
 @Id
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @SequenceGenerator(
 	name="student_sequence",
 	sequenceName="student_sequence",
@@ -67,22 +49,38 @@ private LocalDate date;
 			unique = true
 	)
 private String email;
+	@Column(
+			name = "username",
+			nullable = false,
+			unique = true
+	)
+	private String username;
+	@Column(
+			name = "password",
+			nullable = false,
+			unique = true
+	)
+	private String password;
 @Transient
 private Integer age;
 
 
 public Student(){
 }
-public Student(Long id,String name,LocalDate date,String email){
+public Student(Long id,String name,LocalDate date,String email,String username,String password){
 	this.id=id;
 	this.name=name;
 	this.date=date;
 	this.email=email;
+	this.username=username;
+	this.password=password;
 }
-public Student(String name,LocalDate date,String email){
+public Student(String name,LocalDate date,String email,String username,String password){
 this.name=name;
 this.date=date;
 this.email=email;
+this.username=username;
+this.password=password;
 }
 public Long getId() {
 	return id;
@@ -115,6 +113,18 @@ return email;
 public void setEmail(String email){
 this.email=email;
 }
+public String getUsername(){
+		return username;
+	}
+	public void setUserName(String username){
+		this.username=username;
+	}
+	public String getPassword(){
+		return password;
+	}
+	public void setPassword(String password){
+		this.password=password;
+	}
 
 @Override
 public String toString(){
@@ -123,6 +133,8 @@ public String toString(){
 		     ", age: "+age+
 		     ", date: "+date+
 		     ", email: '"+email+'\''+
+			", username: '"+username+'\''+
+			", password: '"+password+'\''+
 		       '}';
 }
 }
